@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  min-width: 300px;
+  min-height: 600px;
+  background-color: #010323;
+  display: flex;
+}
+
+.wrapper div {
+  flex: 1;
+}
+
+.wrapper > div + div {
+  flex: 0 0 200px;
+  position: relative;
+  /* border-left: 1px solid rgba(255, 255, 255, 0.2); */
+}
+
+.controls {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 40px;
+  font-size: 48px;
+  color: white;
+}
+
+.ticker-controls {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+  width: 400px;
+  overflow: hidden;
+  user-select: none;
+  cursor: grab;
+  pointer-events: all;
+  z-index: 9;
+  transition: all 200ms;
+  touch-action: none;
+}
+
+.ticker-cover {
+  width: 100%;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  height: 30%;
+  min-height: 100px;
+  background-image: linear-gradient(to bottom, #010323, #01032300);
+  z-index: 1;
+}
+
+.ticker-cover + .ticker-cover {
+  top: auto;
+  bottom: 0;
+  margin: auto;
+  background-image: linear-gradient(to top, #010323, #01032300);
+}
+
+.ticker-sets {
+  position: relative;
+}
+
+.current-time {
+  font-size: 96px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 64px;
+  height: 100px;
+  align-items: center;
+  margin: auto;
+  font-weight: 600;
+  vertical-align: baseline;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  user-select: none;
+}
+
+.current-time span {
+  font-size: 0.5em;
+  margin-left: 0.2em;
+}
+
+.ticker-lines {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.ticker-lines > div {
+  position: relatives;
+  flex: 0 0 1px;
+  height: 1px;
+  width: 50%;
+  background-color: #606a9c;
+  opacity: 1;
+}
+
+.ticker-lines .hour {
+  width: 90%;
+  background-color: #606a9c;
+}
+
+.ticker {
+  position: absolute;
+  top: 0;
+  right: 16px;
+  width: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1400px; /* Match PX_PER_DAY */
+  overflow: hidden;
+}
+
+.ticker:nth-child(1) {
+  transform: translateY(-100%);
+}
+
+.ticker:nth-child(3) {
+  transform: translateY(100%);
+}
