@@ -28,13 +28,15 @@ function App() {
 
   return (
     <div className="wrapper">
-      <div>
-        <Scene
-          sunCoordsRef={sunCoordsRef}
-          onLoad={handleLoad}
-        />
+      <div className="scene">
+        <div className="globe">
+          <Scene
+            sunCoordsRef={sunCoordsRef}
+            onLoad={handleLoad}
+          />
+        </div>
       </div>
-      <div>
+      <div className="controls">
         <Controls time={state.realTime + state.offset} prevOffsetMsRef={prevOffsetMsRef} onChangeOffset={handleChangeOffset} />
       </div>
     </div>

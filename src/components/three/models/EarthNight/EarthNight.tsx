@@ -31,24 +31,7 @@ export default function Earth() {
   );
   return (
     <>
-      {/* <mesh
-        ref={cloudsRef}
-        layers={1}
-        castShadow
-        scale={[1.001, 1.001, 1.001]}
-        rotation-y={Math.PI}
-      >
-        <icosahedronGeometry args={[1, 128]} />
-        <meshBasicMaterial
-          color={0xff0000}
-          roughness={1}
-          opacity={0.2}
-          // alphaMap={clouds}
-          transparent
-        />
-      </mesh> */}
       <mesh
-        // layers={1}
         receiveShadow
         scale={[1.005, 1.005, 1.005]}
         rotation-y={Math.PI}
@@ -74,41 +57,26 @@ export default function Earth() {
 
           void main() {
             vUv2 = uv;
-
-            vDist = clamp(pow(normalize2(dot(normalize(uLight) * vec3(-1.5, 1., -1.) , position) * ${
-              1 / (EARTH_RADIUS / 4)
+            vDist = clamp(pow(normalize2(dot(normalize(uLight) * vec3(-1.5, 1., -1.) , position) * ${1 / (EARTH_RADIUS / 4)
             }), 0.5), 0., 1.);
-            
-          //  vDist = clamp(pow(normalize2(dot(normalize(uLight) * vec3(-1., 1., -1.) , position) * ${
-            1 / (EARTH_RADIUS / 4)
-          }), 2.5), 0., 2.);
-            // vDist = clamp(pow(normalize2(dot(normalize(uLight) * vec3(-1.,1.,-1.) , position) * 2.), 2.), 0., 1.);
-            // vDist = 0.1; // 0.01 = night 0.99 = other
+            }), 2.5), 0., 2.);
           }
           `}
           fragmentShader={`
-          // uniform sampler2D uDay;
           uniform sampler2D uNight;
           uniform vec3 uLight;
           varying vec2 vUv2;
           varying float vDist;
 
           void main() {
-            // vec4 texDay = texture2D(uDay, vUv2);
             vec4 texNight = texture2D(uNight, vUv2);
             vec4 clear = vec4(0, 0, 0, 0);
-            // float c = vDist + 0.2;
-            // vec4 d = mix(texNight,texDay,vDist);
-
             vec4 d = mix(texNight, clear, pow(vDist, 2.) );
             csm_DiffuseColor = d;
           }
           `}
           uniforms={uniforms}
           transparent
-          // flatShading
-          // normalMap={normal}
-          // roughnessMap={rough}
         />
       </mesh>
     </>

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,15 +11,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 .wrapper {
   width: 100vw;
   height: 100vh;
@@ -23,25 +18,41 @@ code {
   min-height: 600px;
   background-color: #010323;
   display: flex;
+  flex-direction: column;
 }
 
-.wrapper div {
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
+
+.scene {
   flex: 1;
+  position: relative;
 }
 
-.wrapper > div + div {
-  flex: 0 0 200px;
+.globe {
+  position: absolute;
+  width: 100%;
+  height: calc(100% + 40px);
+  top: 0;
+  left: 0;
+  margin: auto;
+}
+
+.controls {
+  flex: 0 0 100px;
   position: relative;
   /* border-left: 1px solid rgba(255, 255, 255, 0.2); */
 }
 
-.controls {
+.controls-outer {
   position: relative;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 40px;
   font-size: 48px;
   color: white;
 }
@@ -52,7 +63,8 @@ code {
   top: 0;
   right: 0;
   margin: auto;
-  width: 400px;
+  height: 200px;
+  width: 100%;
   overflow: hidden;
   user-select: none;
   cursor: grab;
@@ -63,34 +75,36 @@ code {
 }
 
 .ticker-cover {
-  width: 100%;
+  height: 100%;
   position: absolute;
   pointer-events: none;
-  top: 0;
-  height: 30%;
-  min-height: 100px;
-  background-image: linear-gradient(to bottom, #010323, #01032300);
+  left: 0;
+  width: 50%;
+  min-width: 100px;
+  background-image: linear-gradient(to right, #010323, #01032300);
   z-index: 1;
 }
 
 .ticker-cover + .ticker-cover {
-  top: auto;
-  bottom: 0;
+  left: auto;
+  right: 0;
   margin: auto;
-  background-image: linear-gradient(to top, #010323, #01032300);
+  background-image: linear-gradient(to left, #010323, #01032300);
 }
 
 .ticker-sets {
-  position: relative;
+  position: absolute;
+  top: 140px;
+
 }
 
 .current-time {
-  font-size: 96px;
+  font-size: 48px;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 64px;
-  height: 100px;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  width: 100px;
   align-items: center;
   margin: auto;
   font-weight: 600;
@@ -99,6 +113,7 @@ code {
   font-variant-numeric: tabular-nums;
   text-align: right;
   user-select: none;
+  z-index: 20;
 }
 
 .current-time span {
@@ -110,40 +125,41 @@ code {
   flex-basis: 100%;
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
 }
 
 .ticker-lines > div {
   position: relatives;
   flex: 0 0 1px;
-  height: 1px;
-  width: 50%;
+  width: 1px;
+  height: 50%;
   background-color: #606a9c;
   opacity: 1;
 }
 
 .ticker-lines .hour {
-  width: 90%;
-  background-color: #606a9c;
+  height: 75%;
+  background-color: #a4aac8;
 }
 
 .ticker {
   position: absolute;
-  top: 0;
-  right: 16px;
-  width: 24px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 1400px; /* Match PX_PER_DAY */
+  width: 1400px; /* Match PX_PER_DAY */
   overflow: hidden;
 }
 
 .ticker:nth-child(1) {
-  transform: translateY(-100%);
+  transform: translateX(-100%);
 }
 
 .ticker:nth-child(3) {
-  transform: translateY(100%);
+  transform: translateX(100%);
 }

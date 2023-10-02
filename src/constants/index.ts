@@ -7,11 +7,10 @@ export const WEATHER_SERVICE = "https://meridian-weather-service.vercel.app";
 // TODO – Use avif in supported browsers
 export const PATHS = {
     earthMap: "/img/earth-day.jpg",
-    bumpMap: "/img/bump-map-4k.jpg",
-    specularMap: "/img/specular-map-4k.jpg",
+    bumpMap: "/img/bump-map.jpg",
+    specularMap: "/img/specular-map.jpg",
     clouds: "/img/clouds.webp",
-    earthNight: "/img/earth-night-15b.jpg",
-    skyBox: "/img/stars-3.jpg",
+    earthNight: "/img/earth-night.jpg",
 };
 
 export const BLUR_PX = 48;

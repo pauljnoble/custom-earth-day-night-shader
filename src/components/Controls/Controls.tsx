@@ -35,15 +35,15 @@ const TickerLines = ({
 };
 
 const TickerMinimal = ({ prevOffsetMsRef, onChangeOffset }: any) => {
-  const [y, setY] = useState(0);
+  const [x, setX] = useState(0);
 
-  const bind = useDrag(({ down, movement: [mx, my] }) => {
+  const bind = useDrag(({ down, movement: [mx, _] }) => {
     let deltaMs = 0;
-    deltaMs = pxToMs(my);
+    deltaMs = pxToMs(mx);
     const ms = deltaMs + prevOffsetMsRef.current;
     const deltaPx = msToPx(ms);
 
-    setY(deltaPx);
+    setX(deltaPx);
     onChangeOffset(-ms)
 
 
@@ -57,7 +57,7 @@ const TickerMinimal = ({ prevOffsetMsRef, onChangeOffset }: any) => {
       <div className="ticker-cover"></div>
       <div className="ticker-cover"></div>
 
-      <div className="ticker-sets" style={{ transform: `translateY(${y % PX_PER_DAY}px)` }}>
+      <div className="ticker-sets" style={{ transform: `translateX(${x % PX_PER_DAY}px)` }}>
         <TickerLines index={-1} offsetDays={0} />
         <TickerLines index={0} offsetDays={0} />
         <TickerLines index={1} offsetDays={0} />
@@ -70,7 +70,7 @@ const TickerMinimal = ({ prevOffsetMsRef, onChangeOffset }: any) => {
 const Controls = ({ prevOffsetMsRef, time, onChangeOffset }: any) => {
   const formattedTime = timeStampToTime(time)
 
-  return (<div className="controls">
+  return (<div className="controls-outer">
     <div className="current-time"><div>{formattedTime.hours}:{formattedTime.minutes}</div></div>
     <TickerMinimal prevOffsetMsRef={prevOffsetMsRef} onChangeOffset={onChangeOffset} />
   </div>)
