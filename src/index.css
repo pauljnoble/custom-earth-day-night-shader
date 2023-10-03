@@ -104,16 +104,21 @@ body {
   bottom: 48px;
   left: 0;
   right: 0;
-  width: 100px;
+  width: 200px;
+  text-align: center;
   align-items: center;
   margin: auto;
-  font-weight: 600;
+  font-weight: 400;
   vertical-align: baseline;
   pointer-events: none;
   font-variant-numeric: tabular-nums;
   text-align: right;
   user-select: none;
   z-index: 20;
+}
+
+.current-time div {
+  text-align: center;
 }
 
 .current-time span {
@@ -140,7 +145,7 @@ body {
 
 .ticker-lines .hour {
   height: 75%;
-  background-color: #a4aac8;
+  background-color: #606a9c;
 }
 
 .ticker {
